@@ -6,7 +6,7 @@ import { configurarAplicacion } from './app.setup';
 config({ quiet: true });
 
 const DEFAULT_PORT = 3000;
-const LOCAL_HOST = '127.0.0.1';
+const HOST = '0.0.0.0';
 
 async function bootstrap(): Promise<void> {
   const port = Number(process.env.PORT ?? DEFAULT_PORT);
@@ -17,9 +17,9 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
   configurarAplicacion(app);
 
-  await app.listen(port, LOCAL_HOST);
+  await app.listen(port, HOST);
   console.log(
-    `API de Control del Carro disponible en http://${LOCAL_HOST}:${port}/api`,
+    `API de Control del Carro disponible en http://${HOST}:${port}/api`,
   );
 }
 
